@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # new_mew_strings - jzu@free.fr 2017 - MIT license
-# Developed for MyEtherWallet (https://www.myetherwallet.com/)
+# Written for MyEtherWallet (https://www.myetherwallet.com/).
 # Find missing MEW translation strings in app/scripts/translations/XX.js
-# and display original en.js key:value pairs
+# and display original en.js key:value pairs.
+# -k simply displays keys.
 # Example : 
 # cd ~/git/etherwallet
 # new_mew_strings.sh fr
@@ -27,8 +28,14 @@ fi
 
 if [ $# -eq 0 ] 
 then
-  echo "Usage: $0 [target language (2 or 4 letters)]"
+  echo "Usage: $0 [-k] target_language"
   exit 2
+fi
+
+if [ $1 = "-k" ]
+then
+  KEYS=1
+  shift
 fi
 
 TARGET=$1
@@ -70,6 +77,17 @@ diff /tmp/mew.en.$$ /tmp/mew.$TARGET.$$ \
 
 grep -q 'kludge||egrep' /tmp/mew.strings.$$ && \
   exit 9
+
+# Print only missing keys if -k 
+
+if [ "$KEYS" = "1" ]
+then
+  cat /tmp/mew.strings.$$ \
+  | sed -e "s/|*egrep_kludge|*//g" \
+        -e 's/"//g' \
+        -e 's/|/\n/g'
+  exit 0
+fi
 
 # Display key:value pairs in en.js with context
 
