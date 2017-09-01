@@ -52,14 +52,14 @@ fi
 
 # Find all translation keys in en.js
 
-grep ' :  *' $DIR/en.js \
+grep -P '[\t ]:[\t ]' $DIR/en.js \
 | sed 's/[[:space:]]*:.*//' \
 | sort \
 > /tmp/mew.en.$$
 
 # Find all translation keys in $TARGET.js
 
-grep ' :  *' $DIR/$TARGET.js \
+grep -P '[\t ]:[\t ]' $DIR/$TARGET.js \
 | sed 's/[[:space:]]*:.*//' \
 | sort \
 > /tmp/mew.$TARGET.$$
