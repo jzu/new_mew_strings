@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# new_mew_strings - jzu@free.fr 2017 - MIT license
+# new_mew_strings - https://github.com/jzu/new_mew_strings - MIT license
 # Written for MyEtherWallet (https://www.myetherwallet.com/).
 # Find missing MEW translation strings in app/scripts/translations/XX.js
 # and display original en.js key:value pairs.
@@ -53,13 +53,15 @@ fi
 # Find all translation keys in en.js
 
 grep -P '[\t ]:[\t ]' $DIR/en.js \
+| grep -v '^/' \
 | sed 's/[[:space:]]*:.*//' \
 | sort \
 > /tmp/mew.en.$$
 
 # Find all translation keys in $TARGET.js
 
-grep -P '[\t ]:[\t ]' $DIR/$TARGET.js \
+grep -P '^[^:]*:[\t ]' $DIR/$TARGET.js \
+| grep -v '^/' \
 | sed 's/[[:space:]]*:.*//' \
 | sort \
 > /tmp/mew.$TARGET.$$
