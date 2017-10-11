@@ -11,7 +11,7 @@ The `-k` option simply displays the missing keys.
 
 Giving a wrong language argument display all possible languages.
 
-Check all languages at once (as of August 2017):
+Check all languages at once (as of October 2017):
 
-`for i in ar de el en es fi fr ht hu id it ja ko nl no pl pt ru sk sl sv tr vi zhcn zhtw; do echo "$i :" ; ../new_mew_strings/new_mew_strings.sh $i; done`
+`for i in ar de el en es fa fi fr ht hu id it ja ko nl no pl pt ru sk sl sv tr vi zhcn zhtw; do echo "$i :" ; ../new_mew_strings/new_mew_strings.sh $i; done`
 
